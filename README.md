@@ -1,2 +1,2 @@
-TPDT.LogicGraph
+TPDT.LogicGraph是一个原创的桌游 名字暂时叫编程棋？ 结合了图结构和卡牌 可多人联机
 ===============
