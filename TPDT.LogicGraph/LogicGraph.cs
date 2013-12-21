@@ -12,12 +12,16 @@ namespace TPDT.LogicGraph
     class LogicGraph:Game
     {
         Texture2D tex;
+        SpriteFont sf;
         private GraphicsDeviceManager graphicsDeviceManager;
         private SpriteBatch sb;
+        private ScreenManager sm;
         public LogicGraph()
         {
             graphicsDeviceManager = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            sm = new ScreenManager(this);
+            this.GameSystems.Add(sm);
         }
         protected override void LoadContent()
         {
@@ -27,7 +31,7 @@ namespace TPDT.LogicGraph
         }
         protected override void Initialize()
         {
-            Window.Title = "1213";
+            Window.Title = "编程棋 Alpha 0.1";
             sb = new SpriteBatch(GraphicsDevice);
 
             base.Initialize();
