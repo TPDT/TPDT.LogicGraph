@@ -46,6 +46,8 @@ namespace TPDT.LogicGraph
         /// </param>
         public override void Draw(GameTime gameTime)
         {
+            if (!contentLoaded)
+                return;
             // Just lock current drawable game systems to grab them in a temporary list.
             lock (drawableGameSystems)
             {
@@ -97,6 +99,7 @@ namespace TPDT.LogicGraph
         {
             // Setup the graphics device if it was not already setup.
             InitializePendingGameSystems();
+            base.Initialize();
         }
 
         private void InitializePendingGameSystems(bool loadContent = false)
@@ -163,6 +166,7 @@ namespace TPDT.LogicGraph
             }
 
             currentlyContentGameSystems.Clear();
+            contentLoaded = false;
             base.UnloadContent();
         }
         /// <summary>
@@ -173,6 +177,8 @@ namespace TPDT.LogicGraph
         /// </param>
         public override void Update(GameTime gameTime)
         {
+            if (!contentLoaded)
+                return;
             lock (updateableGameSystems)
             {
                 foreach (var updateable in updateableGameSystems)

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{228A0533-D867-489E-BEBF-A5AB705D692C}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <ProjectGuid>{51B51551-DDFF-4651-A4EB-30FD3DB08C96}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TPDT.LogicGraph</RootNamespace>
-    <AssemblyName>TPDT.LogicGraph</AssemblyName>
+    <RootNamespace>TPDT.FontSolver</RootNamespace>
+    <AssemblyName>TPDT.FontSolver</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -64,63 +65,38 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\SharpDX.Toolkit.Graphics.2.5.0\lib\net40\SharpDX.Toolkit.Graphics.dll</HintPath>
     </Reference>
-    <Reference Include="SharpDX.Toolkit.Input">
-      <HintPath>..\packages\SharpDX.Toolkit.Input.2.5.0\lib\net40\SharpDX.Toolkit.Input.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ComponentContainer.cs" />
-    <Compile Include="DrawableComponent.cs" />
-    <Compile Include="GameComponent.cs" />
-    <Compile Include="LogicGraph.cs" />
+    <Compile Include="BitmapImporter.cs" />
+    <Compile Include="BitmapUtils.cs" />
+    <Compile Include="CharacterRegion.cs" />
+    <Compile Include="CharacterRegionTypeConverter.cs" />
+    <Compile Include="ContentCompilerResult.cs" />
+    <Compile Include="FontCompiler.cs" />
+    <Compile Include="FontDescription.cs" />
+    <Compile Include="FontStyle.cs" />
+    <Compile Include="FontTextureFormat.cs" />
+    <Compile Include="Glyph.cs" />
+    <Compile Include="GlyphCropper.cs" />
+    <Compile Include="GlyphPacker.cs" />
+    <Compile Include="IFontImporter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ScreenManager.cs" />
-    <Compile Include="Screen\GameScreen.cs" />
-    <Compile Include="Screen\Screen.cs" />
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <None Include="Content\Army1.tkb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="packages.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
+    <Compile Include="SpriteFontWriter.cs" />
+    <Compile Include="TrueTypeImporter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\Logo.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="TPDT.ico">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

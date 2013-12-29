@@ -39,6 +39,7 @@ namespace TPDT.LogicGraph
             if (game == null) throw new ArgumentNullException("game");
             this.game = game;
             this.registry = game.Services;
+            this.Enabled = true;
         }
 
         /// <summary>

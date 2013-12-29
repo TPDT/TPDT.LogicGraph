@@ -22,7 +22,8 @@ namespace TPDT.LogicGraph
         public override void Initialize()
         {
             // Gets the graphics device service
-            graphicsDeviceService = (IGraphicsDeviceService)base.Services.GetService(typeof(IGraphicsDeviceService)); 
+            graphicsDeviceService = (IGraphicsDeviceService)base.Services.GetService(typeof(IGraphicsDeviceService));
+            this.Visible = true;
             base.Initialize();
         }
         /// <summary>

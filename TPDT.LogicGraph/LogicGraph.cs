@@ -1,6 +1,7 @@
 ﻿using SharpDX;
 using SharpDX.Toolkit;
 using SharpDX.Toolkit.Graphics;
+using SharpDX.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,12 +17,13 @@ namespace TPDT.LogicGraph
         private GraphicsDeviceManager graphicsDeviceManager;
         private SpriteBatch sb;
         private ScreenManager sm;
+        private RenderForm form;
         public LogicGraph()
         {
             graphicsDeviceManager = new GraphicsDeviceManager(this);
-            Content.RootDirectory = "Content";
             sm = new ScreenManager(this);
             this.GameSystems.Add(sm);
+            Content.RootDirectory = "Content";
         }
         protected override void LoadContent()
         {
@@ -32,15 +34,20 @@ namespace TPDT.LogicGraph
         protected override void Initialize()
         {
             Window.Title = "编程棋 Alpha 0.1";
+            Window.AllowUserResizing = true;
+            form = Window.NativeWindow as RenderForm;
+            form.Icon = System.Drawing.Icon.ExtractAssociatedIcon("TPDT.ico");
+            
             sb = new SpriteBatch(GraphicsDevice);
-
+            sm.ToggleScreen(new GameScreen(this));
             base.Initialize();
         }
         protected override void Draw(GameTime gameTime)
         {
-            sb.Begin();
-            sb.Draw(tex, Vector2.Zero, Color.White);
-            sb.End();
+            GraphicsDevice.Clear(Color.Black);
+            //sb.Begin();
+            //sb.Draw(tex, Vector2.Zero, Color.White);
+            //sb.End();
             base.Draw(gameTime);
         }
     }

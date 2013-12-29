@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TPDT.LogicGraph.Default", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TPDT.LogicGraph", "TPDT.LogicGraph\TPDT.LogicGraph.csproj", "{228A0533-D867-489E-BEBF-A5AB705D692C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TPDT.FontSolver", "TPDT.FontSolver\TPDT.FontSolver.csproj", "{51B51551-DDFF-4651-A4EB-30FD3DB08C96}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,16 @@ Global
 		{228A0533-D867-489E-BEBF-A5AB705D692C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{228A0533-D867-489E-BEBF-A5AB705D692C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{228A0533-D867-489E-BEBF-A5AB705D692C}.Release|x86.ActiveCfg = Release|Any CPU
+		{51B51551-DDFF-4651-A4EB-30FD3DB08C96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51B51551-DDFF-4651-A4EB-30FD3DB08C96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51B51551-DDFF-4651-A4EB-30FD3DB08C96}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{51B51551-DDFF-4651-A4EB-30FD3DB08C96}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{51B51551-DDFF-4651-A4EB-30FD3DB08C96}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{51B51551-DDFF-4651-A4EB-30FD3DB08C96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51B51551-DDFF-4651-A4EB-30FD3DB08C96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51B51551-DDFF-4651-A4EB-30FD3DB08C96}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{51B51551-DDFF-4651-A4EB-30FD3DB08C96}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{51B51551-DDFF-4651-A4EB-30FD3DB08C96}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
