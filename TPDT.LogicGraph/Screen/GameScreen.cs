@@ -1,5 +1,4 @@
 ﻿using SharpDX;
-using SharpDX.Direct3D11;
 using SharpDX.DirectWrite;
 using SharpDX.Toolkit;
 using SharpDX.Toolkit.Graphics;
@@ -8,47 +7,75 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TPDT.LogicGraph.Base;
+using TPDT.LogicGraph.UI;
 
 namespace TPDT.LogicGraph
 {
     class GameScreen : Screen
     {
-        private Model army1; 
-        private Matrix world;
-        private Matrix view;
-        private Matrix projection;
-        private BoundingSphere modelBounds;
-        public GameScreen(Game game)
+        public ResourceManager Resource { get; set; }
+        private Button btnnode, btnroad;
+        private Map map;
+        private Texture2D ntex;
+        private bool addnode, addroad;
+        public GameScreen(LogicGraph game)
             : base(game)
         {
+            Resource = new ResourceManager();
+            btnnode = new Button(game, "Button.png", "Add Node", Vector2.Zero, new Size2(110, 30), null, Color.Blue);
+            btnroad = new Button(game, "Button.png", "Add Road", new Vector2(120, 0), new Size2(110, 30), null, Color.Blue);
+            btnnode.Click += btnnode_Click;
+            btnroad.Click += btnroad_Click;
+
+            map = new Map();
+        }
+
+        void btnroad_Click(object sender, EventArgs e)
+        {
+            addroad = !addroad;
+        }
+
+        void btnnode_Click(object sender, EventArgs e)
+        {
+            addnode = !addnode;
         }
         public override void Initialize()
         {
+            Resource.Load(@"default.def");
+            this.Components.Add(btnnode);
+            this.Components.Add(btnroad);
+
+            addnode = addroad = false;
+
             base.Initialize();
         }
         public override void Draw(GameTime gameTime)
         {
-            // Draw the model
-            army1.Draw(GraphicsDevice, world, view, projection);
+            foreach(NodeBase node in map.Nodes)
+            {
+                Game.SpriteBatch.Draw(ntex, new Vector2(node.Position.Item1, node.Position.Item2), Color.White);
+            }
             base.Draw(gameTime);
         }
         protected override void LoadContent()
         {
-            army1 = Content.Load<Model>("Army1");
-            BasicEffect.EnableDefaultLighting(army1, true);
+            btnnode.HoverBackground = Content.Load<Texture2D>("ButtonHover.png");
+            btnroad.HoverBackground = Content.Load<Texture2D>("ButtonHover.png");
+            ntex = Content.Load<Texture2D>("Node_0.png");
             base.LoadContent();
         }
         public override void Update(GameTime gameTime)
         {
-            // Calculate the bounds of this model
-            modelBounds = army1.CalculateBounds();
-            
-            // Calculates the world and the view based on the model size
-            const float MaxModelSize = 10.0f;
-            var scaling = MaxModelSize / modelBounds.Radius;
-            view = Matrix.LookAtRH(new Vector3(0, 0, 2147483647), new Vector3(0, 0, 0), Vector3.Up);
-            projection = Matrix.PerspectiveFovRH(0.9f, (float)GraphicsDevice.BackBuffer.Width / GraphicsDevice.BackBuffer.Height, 0.1f, MaxModelSize * 10.0f);
-            world = Matrix.Identity;
+            if (Game.MouseHelper.CurrentState.Left == SharpDX.Toolkit.Input.ButtonState.Pressed)
+            {
+                if (addnode)
+                {
+                    map.Nodes.Add(NodeBase.CreateNode(Resource.NodeDefinitions[0],
+                        new Tuple<float, float>(Game.MouseHelper.Position.X - 20, Game.MouseHelper.Position.Y - 20)));
+                }
+                addnode = addroad = false;
+            }
             base.Update(gameTime);
         }
     }

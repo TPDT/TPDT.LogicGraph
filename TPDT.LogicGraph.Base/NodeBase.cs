@@ -22,12 +22,21 @@ namespace TPDT.LogicGraph.Base
         public int Id { get; protected set; }
         public ArmyBase Army { get; protected set; }
         public string Name { get; protected set; }
+        public Tuple<float, float> Position { get; protected set; }
+        public NodeDefinition Definition { get; protected set; }
         public string Description { get; protected set; }
 
-        protected NodeBase(NodeDefinition node)
+        public List<RoadBase> Roads { get; private set; }
+
+        private static int index = 0;
+
+        public NodeBase(int id, NodeDefinition node, Tuple<float, float> position)
         {
+            this.Id = id;
             Name = node.DefaultName;
             Description = node.DefaultDescription;
+            Definition = node;
+            Position = position;
         }
 
         public virtual void WriteNode(BinaryWriter writer)
@@ -36,16 +45,16 @@ namespace TPDT.LogicGraph.Base
             writer.Write(this.GetType().FullName);
         }
 
-        public static NodeBase CreateNode(NodeDefinition nodeDefinition)
+        public static NodeBase CreateNode(NodeDefinition nodeDefinition, Tuple<float, float> position)
         {
             NodeBase node;
 
-            node = ResouceManager.CurrentResouceManager.LoadedNodes[nodeDefinition.EntityType].InvokeMember(
+            node = ResourceManager.CurrentResouceManager.LoadedNodes[nodeDefinition.EntityType].InvokeMember(
                 null,
                 System.Reflection.BindingFlags.CreateInstance,
                 null,
                 null,
-                new object[] { nodeDefinition }
+                new object[] { index++, nodeDefinition, position }
                 ) as NodeBase;
 
             return node;

@@ -8,9 +8,9 @@ using TPDT.LogicGraph.Army;
 
 namespace TPDT.LogicGraph.Base
 {
-    public class ResouceManager
+    public class ResourceManager
     {
-        public Assembly[] LoadedAssemblys { get; protected set; }
+        public List<Assembly> LoadedAssemblys { get; protected set; }
         public Dictionary<int, ArmyDefinition> ArmyDefinitions {  get; protected set; }
         public Dictionary<int, CardDefinition> CardDefinitions { get; protected set; }
         public Dictionary<int, NodeDefinition> NodeDefinitions { get; protected set; }
@@ -20,9 +20,9 @@ namespace TPDT.LogicGraph.Base
         public Dictionary<string, Type> LoadedRodes { get; protected set; }
 
         public static Game CurrentGame {  get; protected set; }
-        public static ResouceManager CurrentResouceManager {  get; protected set; }
+        public static ResourceManager CurrentResouceManager {  get; protected set; }
 
-        public ResouceManager()
+        public ResourceManager()
         {
             ArmyDefinitions = new Dictionary<int, ArmyDefinition>();
             CardDefinitions = new Dictionary<int, CardDefinition>();
@@ -31,15 +31,16 @@ namespace TPDT.LogicGraph.Base
             LoadedCards = new Dictionary<string, Type>();
             LoadedNodes = new Dictionary<string, Type>();
             LoadedRodes = new Dictionary<string, Type>();
+            LoadedAssemblys = new List<Assembly>();
+            ResourceManager.CurrentResouceManager = this;
         }
-
 
         public void Save(string path)
         {
             using (BinaryWriter writer = new BinaryWriter(new FileStream(path, FileMode.Create)))
             {
                 writer.Write((byte)0);
-                writer.Write(LoadedAssemblys.Length );
+                writer.Write(LoadedAssemblys.Count );
                 foreach (var ass in LoadedAssemblys)
                 {
                     writer.Write(Path.GetFileName( ass.Location));
@@ -75,11 +76,10 @@ namespace TPDT.LogicGraph.Base
                 if (reader.Read() == 0)
                 {
                     int count = reader.ReadInt32();
-                    LoadedAssemblys = new Assembly[count];
                     for (int i = 0; i < count; i++)
                     {
                         Assembly ass = Assembly.LoadFrom(reader.ReadString());
-                        LoadedAssemblys[i] = ass;
+                        LoadedAssemblys.Add(ass);
                         foreach (var t in ass.GetTypes())
                         {
                             if (t.IsSubclassOf(typeof(ArmyBase)))

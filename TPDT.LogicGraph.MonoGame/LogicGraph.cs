@@ -10,6 +10,7 @@ namespace TPDT.LogicGraph.MonoGame
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Model model;
 
         public LogicGraph()
         {
@@ -40,6 +41,7 @@ namespace TPDT.LogicGraph.MonoGame
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            model = Content.Load<Model>("model");
         }
 
         /// <summary>
@@ -72,6 +74,9 @@ namespace TPDT.LogicGraph.MonoGame
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+            model.Draw(Matrix.Identity,
+                Matrix.CreateLookAt(Vector3.UnitZ * 700, Vector3.Zero, Vector3.Up),
+                Matrix.CreatePerspectiveFieldOfView(0.9f, (float)GraphicsDevice.Viewport.Bounds.Width / GraphicsDevice.Viewport.Bounds.Height, 0.1f, 10.0f));
 
             base.Draw(gameTime);
         }
