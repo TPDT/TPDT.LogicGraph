@@ -28,7 +28,21 @@ namespace TPDT.LogicGraph
             btnnode.Click += btnnode_Click;
             btnroad.Click += btnroad_Click;
 
+            this.OnButtonUp += GameScreen_OnButtonUp;
+
             map = new Map();
+        }
+
+        void GameScreen_OnButtonUp(object sender, EventArgs e)
+        {
+            if (addnode)
+            {
+                var node = NodeBase.CreateNode(Resource.NodeDefinitions[0],
+                    new Tuple<float, float>(Game.MouseHelper.Position.X, Game.MouseHelper.Position.Y));
+                map.Nodes.Add(node);
+                this.Components.Add(new Node(Game, node));
+            }
+            addnode = addroad = false;
         }
 
         void btnroad_Click(object sender, EventArgs e)
@@ -48,14 +62,16 @@ namespace TPDT.LogicGraph
 
             addnode = addroad = false;
 
+            this.Position = Vector2.Zero;
+            this.Size = new Size2(Game.GraphicsDevice.BackBuffer.Width, Game.GraphicsDevice.BackBuffer.Width);
             base.Initialize();
         }
         public override void Draw(GameTime gameTime)
         {
-            foreach(NodeBase node in map.Nodes)
-            {
-                Game.SpriteBatch.Draw(ntex, new Vector2(node.Position.Item1, node.Position.Item2), Color.White);
-            }
+            if (addnode)
+                Game.SpriteBatch.DrawString(Game.BasicFont, "addnode", Vector2.UnitY * 25, Color.White);
+            if (addroad)
+                Game.SpriteBatch.DrawString(Game.BasicFont, "addroad", Vector2.UnitY * 25, Color.White);
             base.Draw(gameTime);
         }
         protected override void LoadContent()
@@ -67,15 +83,6 @@ namespace TPDT.LogicGraph
         }
         public override void Update(GameTime gameTime)
         {
-            if (Game.MouseHelper.CurrentState.Left == SharpDX.Toolkit.Input.ButtonState.Pressed)
-            {
-                if (addnode)
-                {
-                    map.Nodes.Add(NodeBase.CreateNode(Resource.NodeDefinitions[0],
-                        new Tuple<float, float>(Game.MouseHelper.Position.X - 20, Game.MouseHelper.Position.Y - 20)));
-                }
-                addnode = addroad = false;
-            }
             base.Update(gameTime);
         }
     }

@@ -82,6 +82,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Class1.cpp" />
     <Compile Include="ComponentContainer.cs" />
     <Compile Include="DrawableComponent.cs" />
     <Compile Include="GameComponent.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="Node.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Road.cs" />
     <Compile Include="ScreenManager.cs" />
     <Compile Include="Screen\GameScreen.cs" />
     <Compile Include="Screen\Screen.cs" />

@@ -1,5 +1,6 @@
 ﻿using SharpDX;
 using SharpDX.Toolkit;
+using SharpDX.Toolkit.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,8 @@ namespace TPDT.LogicGraph
 {
     public class Screen : ComponentContainer, IPosition
     {
+        private bool laststate, lasthover;
+
         public Screen(LogicGraph game)
             : base(game)
         {
@@ -26,6 +29,49 @@ namespace TPDT.LogicGraph
         void Components_ItemAdded(object sender, SharpDX.Collections.ObservableCollectionEventArgs<GameComponent> e)
         {
             e.Item.Screen = this;
+        }
+
+        public override void Update(SharpDX.Toolkit.GameTime gameTime)
+        {
+            if (this.AbsoluteRectangle.Contains(Game.MouseHelper.Position))
+            {
+                if (Game.MouseHelper.CurrentState.Left == ButtonState.Pressed)
+                {
+                    if (laststate)
+                    {
+                        if (OnPress != null)
+                            this.OnPress(this, new EventArgs());
+                    }
+                    else
+                    {
+                        if (OnButtonDown != null)
+                            this.OnButtonDown(this, new EventArgs());
+                    }
+                    this.laststate = true;
+                }
+                else
+                {
+                    if (laststate)
+                    {
+                        if (OnButtonUp != null)
+                            this.OnButtonUp(this, new EventArgs());
+                    }
+                    else
+                    {
+                        if (OnHover != null)
+                            this.OnHover(this, new EventArgs());
+                    }
+
+                    this.laststate = false;
+                }
+                lasthover = true;
+            }
+            else if (lasthover && OnLeave != null)
+            {
+                this.OnLeave(this, new EventArgs());
+                lasthover = false;
+            }
+            base.Update(gameTime);
         }
 
         public SharpDX.Vector2 Position { get; set; }

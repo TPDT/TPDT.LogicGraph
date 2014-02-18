@@ -65,10 +65,16 @@ namespace TPDT.LogicGraph
                         if (OnHover != null)
                             this.OnHover(this, new EventArgs());
                     }
+
+                    this.laststate = false;
                 }
+                lasthover = true;
             }
             else if (lasthover && OnLeave != null)
+            {
                 this.OnLeave(this, new EventArgs());
+                lasthover = false;
+            }
             base.Update(gameTime);
         }
         public event EventHandler OnButtonDown;

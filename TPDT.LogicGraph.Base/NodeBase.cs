@@ -37,6 +37,7 @@ namespace TPDT.LogicGraph.Base
             Description = node.DefaultDescription;
             Definition = node;
             Position = position;
+            Roads = new List<RoadBase>();
         }
 
         public virtual void WriteNode(BinaryWriter writer)
