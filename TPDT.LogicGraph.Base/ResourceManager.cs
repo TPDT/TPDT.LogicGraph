@@ -14,6 +14,7 @@ namespace TPDT.LogicGraph.Base
         public Dictionary<int, ArmyDefinition> ArmyDefinitions {  get; protected set; }
         public Dictionary<int, CardDefinition> CardDefinitions { get; protected set; }
         public Dictionary<int, NodeDefinition> NodeDefinitions { get; protected set; }
+        public Dictionary<int, string> RoadDefinitions { get; protected set; }
         public Dictionary<string, Type> LoadedArmys { get; protected set; }
         public Dictionary<string, Type> LoadedCards { get; protected set; }
         public Dictionary<string, Type> LoadedNodes { get; protected set; }
@@ -27,6 +28,7 @@ namespace TPDT.LogicGraph.Base
             ArmyDefinitions = new Dictionary<int, ArmyDefinition>();
             CardDefinitions = new Dictionary<int, CardDefinition>();
             NodeDefinitions = new Dictionary<int, NodeDefinition>();
+            RoadDefinitions = new Dictionary<int, string>();
             LoadedArmys = new Dictionary<string, Type>();
             LoadedCards = new Dictionary<string, Type>();
             LoadedNodes = new Dictionary<string, Type>();
@@ -65,6 +67,14 @@ namespace TPDT.LogicGraph.Base
                 foreach (var nd in NodeDefinitions)
                 {
                     nd.Value.Save(writer);
+                }
+
+                writer.Write((byte)4);
+                writer.Write(RoadDefinitions.Count);
+                foreach (var nd in RoadDefinitions)
+                {
+                    writer.Write(nd.Key);
+                    writer.Write(nd.Value);
                 }
             }
         }
@@ -134,6 +144,18 @@ namespace TPDT.LogicGraph.Base
                     {
                         NodeDefinition nd = NodeDefinition.Load(reader);
                         NodeDefinitions[nd.Id] = nd;
+                    }
+                }
+                else
+                    throw new Exception("no NodeDefinitions");
+
+                if (reader.Read() == 4)
+                {
+                    int count = reader.ReadInt32();
+                    for (int i = 0; i < count; i++)
+                    {
+                        string rd = reader.ReadString();
+                        RoadDefinitions[reader.ReadInt32()] = rd;
                     }
                 }
                 else

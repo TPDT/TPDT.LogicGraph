@@ -15,12 +15,12 @@ namespace TPDT.LogicGraph.Base
 	/// Description of RoadBase.
 	/// </summary>
 	public abstract class RoadBase
-	{		
-		public int Id{get;private set;}
-		public static string Name{get;private set;}
-		public static string Description{get;private set;}
-		public NodeBase Node1{get;private set;}
-		public NodeBase Node2{get;private set;}
+	{
+        public int Id { get; protected set; }
+        public static string Name { get; protected set; }
+        public static string Description { get; protected set; }
+        public NodeBase Node1 { get; protected set; }
+        public NodeBase Node2 { get; protected set; }
 		
 		public abstract bool IsMoveable(ArmyBase army);
 	}

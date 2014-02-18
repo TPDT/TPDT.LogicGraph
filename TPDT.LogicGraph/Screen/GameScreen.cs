@@ -17,8 +17,8 @@ namespace TPDT.LogicGraph
         public ResourceManager Resource { get; set; }
         private Button btnnode, btnroad;
         private Map map;
-        private Texture2D ntex;
         private bool addnode, addroad;
+        private NodeBase selectNode;
         public GameScreen(LogicGraph game)
             : base(game)
         {
@@ -40,9 +40,23 @@ namespace TPDT.LogicGraph
                 var node = NodeBase.CreateNode(Resource.NodeDefinitions[0],
                     new Tuple<float, float>(Game.MouseHelper.Position.X, Game.MouseHelper.Position.Y));
                 map.Nodes.Add(node);
-                this.Components.Add(new Node(Game, node));
+                var comp = new Node(Game, node);
+                this.Components.Add(comp);
+                comp.OnButtonUp += comp_OnButtonUp;
             }
             addnode = addroad = false;
+        }
+
+        void comp_OnButtonUp(object sender, EventArgs e)
+        {
+            if (selectNode == null)
+            {
+                selectNode = ((Node)sender).NodeData;
+            }
+            else
+            {
+                selectNode = null;
+            }
         }
 
         void btnroad_Click(object sender, EventArgs e)
@@ -53,6 +67,7 @@ namespace TPDT.LogicGraph
         void btnnode_Click(object sender, EventArgs e)
         {
             addnode = !addnode;
+            selectNode = null;
         }
         public override void Initialize()
         {
@@ -78,7 +93,6 @@ namespace TPDT.LogicGraph
         {
             btnnode.HoverBackground = Content.Load<Texture2D>("ButtonHover.png");
             btnroad.HoverBackground = Content.Load<Texture2D>("ButtonHover.png");
-            ntex = Content.Load<Texture2D>("Node_0.png");
             base.LoadContent();
         }
         public override void Update(GameTime gameTime)

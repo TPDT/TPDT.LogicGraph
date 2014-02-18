@@ -43,6 +43,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Armys\Soilder.cs" />
     <Compile Include="Cards\Spirit.cs" />
+    <Compile Include="Rode\TwoWayRoad.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TPDT.LogicGraph.Base\TPDT.LogicGraph.Base.csproj">
