@@ -15,14 +15,11 @@ namespace TPDT.LogicGraph.Army
     /// <summary>
     /// Description of ArmyBase.
     /// </summary>
-    public abstract class ArmyBase
+    public abstract class ArmyBase : TPDT.LogicGraph.Base.GameEntity
     {
-        public int Id { get; protected set; }
-        public string Name { get; set; }
         public int Attack { get; set; }
         public int Move { get; set; }
         public ArmyDefinition Definition { get; protected set; }
-        public string Description { get; protected set; }
         public NodeBase Position { get; protected set; }
         public PlayerBase Owner { get; protected set; }
 
@@ -59,6 +56,11 @@ namespace TPDT.LogicGraph.Army
                 ) as ArmyBase;
 
             return army;
+        }
+
+        public override void Dispose()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -12,7 +12,7 @@ namespace TPDT.LogicGraph
 {
     public class LogicGraph:Game
     {
-        Texture2D tex;
+        Texture2D tex,mouse;
         public SpriteBatch SpriteBatch { get; set; }
         public MouseHelper MouseHelper { get; set; }
         public SpriteFont BasicFont { get; set; }
@@ -29,13 +29,14 @@ namespace TPDT.LogicGraph
         protected override void LoadContent()
         {
             tex = Content.Load<Texture2D>("Logo.jpg");
+            mouse = Content.Load<Texture2D>("Mouse.png");
             BasicFont = this.Content.Load<SpriteFont>("wryh");
             base.LoadContent();
         }
         protected override void Initialize()
         {
             Window.Title = "编程棋 Alpha 0.1";
-            this.IsMouseVisible = true;
+            this.IsMouseVisible = false;
             Window.AllowUserResizing = true;
             form = Window.NativeWindow as RenderForm;
             form.Icon = System.Drawing.Icon.ExtractAssociatedIcon("TPDT.ico");
@@ -51,6 +52,7 @@ namespace TPDT.LogicGraph
             GraphicsDevice.Clear(Color.Black);
             this.SpriteBatch.Begin(SpriteSortMode.Deferred, GraphicsDevice.BlendStates.NonPremultiplied);
             base.Draw(gameTime);
+            SpriteBatch.Draw(mouse, MouseHelper.Position, Color.White);
             this.SpriteBatch.End();
         }
     }

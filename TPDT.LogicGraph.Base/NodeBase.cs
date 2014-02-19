@@ -17,14 +17,11 @@ namespace TPDT.LogicGraph.Base
     /// <summary>
     /// Description of NodeBase.
     /// </summary>
-    public abstract class NodeBase
+    public abstract class NodeBase : GameEntity
     {
-        public int Id { get; protected set; }
         public ArmyBase Army { get; protected set; }
-        public string Name { get; protected set; }
         public Tuple<float, float> Position { get; protected set; }
         public NodeDefinition Definition { get; protected set; }
-        public string Description { get; protected set; }
 
         public List<RoadBase> Roads { get; private set; }
 
@@ -59,6 +56,11 @@ namespace TPDT.LogicGraph.Base
                 ) as NodeBase;
 
             return node;
+        }
+
+        public override void Dispose()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -14,12 +14,11 @@ namespace TPDT.LogicGraph.Base
 	/// <summary>
 	/// Description of RoadBase.
 	/// </summary>
-	public abstract class RoadBase
+    public abstract class RoadBase : GameEntity
     {
         private static int index = 0;
-        public int Id { get; protected set; }
-        public static string Name { get; protected set; }
-        public static string Description { get; protected set; }
+        public new static string Name { get; protected set; }
+        public new static string Description { get; protected set; }
         public NodeBase Node1 { get; protected set; }
         public NodeBase Node2 { get; protected set; }
 		
@@ -48,5 +47,16 @@ namespace TPDT.LogicGraph.Base
 
             return road;
         }
-	}
+
+        public override void Dispose()
+        {
+            if (Node1 != null)
+                Node1.Roads.Remove(this);
+            if (Node2 != null)
+                Node2.Roads.Remove(this);
+            Node1 = null;
+            Node2 = null;
+            GC.SuppressFinalize(this);
+        }
+    }
 }

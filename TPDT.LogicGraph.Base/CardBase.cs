@@ -6,13 +6,10 @@ using System.Text;
 
 namespace TPDT.LogicGraph.Base
 {
-    public abstract class CardBase
+    public abstract class CardBase : GameEntity
     {
-        public int Id { get; private set; }
-        public string Name { get; protected set; }
         public PlayerBase Owner { get; protected set; }
         public CardDefinition Definition { get; protected set; }
-        public string Description { get; protected set; }
         private bool _used;
 
         public bool Used
@@ -65,6 +62,11 @@ namespace TPDT.LogicGraph.Base
         {
             OnStartUsing(this, new EventArgs());
             return true;
+        }
+
+        public override void Dispose()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -35,8 +35,15 @@ namespace TPDT.LogicGraph
         {
             Vector2 p1=new Vector2(RodeData.Node1.Position.Item1,RodeData.Node1.Position.Item2),
                 p2=new Vector2(RodeData.Node2.Position.Item1,RodeData.Node2.Position.Item2);
-            Game.SpriteBatch.Draw(line, p1, new Rectangle(0, 0, (int)((p2 - p1).Length()), 4)
+            Game.SpriteBatch.Draw(line, p1, new Rectangle(0, 2, (int)((p2 - p1).Length()), 4)
                 , Color.Green, getAngle(p1, p2), Vector2.Zero, 1, SpriteEffects.None, 0);
+        }
+
+        protected override void UnloadContent()
+        {
+            RodeData.Dispose();
+            RodeData = null;
+            base.UnloadContent();
         }
 
         private float getAngle(Vector2 p1, Vector2 p2)

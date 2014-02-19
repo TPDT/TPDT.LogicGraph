@@ -51,6 +51,7 @@
     <Compile Include="CardDefinition.cs" />
     <Compile Include="DataDefinion.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="GameEntity.cs" />
     <Compile Include="Global.cs" />
     <Compile Include="IRound.cs" />
     <Compile Include="ISelectable.cs" />
