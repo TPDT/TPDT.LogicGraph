@@ -15,8 +15,7 @@ namespace TPDT.LogicGraph
             : base(game)
         {
             NodeData = data;
-            this.Position = new Vector2(data.Position.Item1 - 20, data.Position.Item2 - 20);
-            this.Size = new Size2(40, 40);
+            this.DrawOrder = 1;
         }
         public NodeBase NodeData { get; set; }
 
@@ -34,6 +33,8 @@ namespace TPDT.LogicGraph
         protected override void LoadContent()
         {
             tex = Content.Load<Texture2D>(string.Format("Node_{0}.png", NodeData.Definition.Id));
+            this.Position = new Vector2(NodeData.Position.Item1 - tex.Width / 2, NodeData.Position.Item2 - tex.Height / 2);
+            this.Size = new Size2(tex.Width, tex.Height);
             base.LoadContent();
         }
 
