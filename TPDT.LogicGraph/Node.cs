@@ -15,13 +15,14 @@ namespace TPDT.LogicGraph
             : base(game)
         {
             NodeData = data;
-            this.Position = new Vector2(data.Position.Item1, data.Position.Item2);
+            this.Position = new Vector2(data.Position.Item1 - 20, data.Position.Item2 - 20);
+            this.Size = new Size2(40, 40);
         }
         public NodeBase NodeData { get; set; }
 
         public override void Draw(SharpDX.Toolkit.GameTime gameTime)
         {
-            Game.SpriteBatch.Draw(tex, new SharpDX.Vector2(this.Position.X - 20, this.Position.Y - 20), Color.White);
+            Game.SpriteBatch.Draw(tex, new SharpDX.Vector2(this.Position.X, this.Position.Y), Color.White);
             base.Draw(gameTime);
         }
 

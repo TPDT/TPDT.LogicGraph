@@ -18,7 +18,7 @@ namespace TPDT.LogicGraph.Base
         public Dictionary<string, Type> LoadedArmys { get; protected set; }
         public Dictionary<string, Type> LoadedCards { get; protected set; }
         public Dictionary<string, Type> LoadedNodes { get; protected set; }
-        public Dictionary<string, Type> LoadedRodes { get; protected set; }
+        public Dictionary<string, Type> LoadedRoads { get; protected set; }
 
         public static Game CurrentGame {  get; protected set; }
         public static ResourceManager CurrentResouceManager {  get; protected set; }
@@ -32,7 +32,7 @@ namespace TPDT.LogicGraph.Base
             LoadedArmys = new Dictionary<string, Type>();
             LoadedCards = new Dictionary<string, Type>();
             LoadedNodes = new Dictionary<string, Type>();
-            LoadedRodes = new Dictionary<string, Type>();
+            LoadedRoads = new Dictionary<string, Type>();
             LoadedAssemblys = new List<Assembly>();
             ResourceManager.CurrentResouceManager = this;
         }
@@ -106,7 +106,7 @@ namespace TPDT.LogicGraph.Base
                             }
                             else if (t.IsSubclassOf(typeof(RoadBase)))
                             {
-                                LoadedRodes.Add(t.FullName, t);
+                                LoadedRoads.Add(t.FullName, t);
                             }
                         }
                     }
@@ -154,8 +154,7 @@ namespace TPDT.LogicGraph.Base
                     int count = reader.ReadInt32();
                     for (int i = 0; i < count; i++)
                     {
-                        string rd = reader.ReadString();
-                        RoadDefinitions[reader.ReadInt32()] = rd;
+                        RoadDefinitions[reader.ReadInt32()] = reader.ReadString();
                     }
                 }
                 else

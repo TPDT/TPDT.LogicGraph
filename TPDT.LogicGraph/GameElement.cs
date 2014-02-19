@@ -20,7 +20,7 @@ namespace TPDT.LogicGraph
 
         public SharpDX.Size2 Size { get; set; }
 
-        public SharpDX.Rectangle AbsoluteRectangle
+        public virtual SharpDX.Rectangle AbsoluteRectangle
         {
             get
             {

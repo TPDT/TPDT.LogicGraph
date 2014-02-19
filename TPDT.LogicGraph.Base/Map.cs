@@ -29,6 +29,7 @@ namespace TPDT.LogicGraph.Base
 		public Map()
 		{
             Nodes = new List<NodeBase>();
+            Roads = new List<RoadBase>();
 		}
 		public void Save(string path)
 		{

@@ -15,7 +15,8 @@ namespace TPDT.LogicGraph.Base
 	/// Description of RoadBase.
 	/// </summary>
 	public abstract class RoadBase
-	{
+    {
+        private static int index = 0;
         public int Id { get; protected set; }
         public static string Name { get; protected set; }
         public static string Description { get; protected set; }
@@ -23,5 +24,29 @@ namespace TPDT.LogicGraph.Base
         public NodeBase Node2 { get; protected set; }
 		
 		public abstract bool IsMoveable(ArmyBase army);
+        public RoadBase(int id, NodeBase node1, NodeBase node2)
+        {
+            Node1 = node1;
+            node1.Roads.Add(this);
+            Node2 = node2;
+            node2.Roads.Add(this);
+            this.Id = id;
+        }
+
+        public static RoadBase CreateRode(int typeId,NodeBase node1,NodeBase node2)
+        {
+            RoadBase road;
+
+            road = ResourceManager.CurrentResouceManager.LoadedRoads[
+                ResourceManager.CurrentResouceManager.RoadDefinitions[typeId]].InvokeMember(
+                null,
+                System.Reflection.BindingFlags.CreateInstance,
+                null,
+                null,
+                new object[] { index++, node1, node2 }
+                ) as RoadBase;
+
+            return road;
+        }
 	}
 }

@@ -43,8 +43,8 @@ namespace TPDT.LogicGraph
                 var comp = new Node(Game, node);
                 this.Components.Add(comp);
                 comp.OnButtonUp += comp_OnButtonUp;
+                this.addnode = false;
             }
-            addnode = addroad = false;
         }
 
         void comp_OnButtonUp(object sender, EventArgs e)
@@ -55,8 +55,17 @@ namespace TPDT.LogicGraph
             }
             else
             {
+                if (selectNode != ((Node)sender).NodeData)
+                {
+                    var rode = RoadBase.CreateRode(0, selectNode, ((Node)sender).NodeData);
+                    map.Roads.Add(rode);
+                    var rodecomp = new Road(Game, rode);
+                    this.Components.Add(rodecomp);
+                }
                 selectNode = null;
+                addroad = false;
             }
+
         }
 
         void btnroad_Click(object sender, EventArgs e)
@@ -87,6 +96,8 @@ namespace TPDT.LogicGraph
                 Game.SpriteBatch.DrawString(Game.BasicFont, "addnode", Vector2.UnitY * 25, Color.White);
             if (addroad)
                 Game.SpriteBatch.DrawString(Game.BasicFont, "addroad", Vector2.UnitY * 25, Color.White);
+            if (selectNode != null)
+                Game.SpriteBatch.DrawString(Game.BasicFont, selectNode.Id.ToString(), Vector2.UnitY * 50, Color.White);
             base.Draw(gameTime);
         }
         protected override void LoadContent()

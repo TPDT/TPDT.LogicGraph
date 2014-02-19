@@ -9,14 +9,13 @@ namespace TPDT.LogicGraph.Default
 {
     public class TwoWayRoad : RoadBase
     {
-        private static int index = 0;
         static TwoWayRoad()
         {
             Name = "TwoWayRoad";
         }
-        public TwoWayRoad()
+        public TwoWayRoad(int id, NodeBase node1, NodeBase node2)
+            : base(id, node1, node2)
         {
-            this.Id = index++;
         }
         public override bool IsMoveable(Army.ArmyBase army)
         {
