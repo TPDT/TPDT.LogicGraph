@@ -10,7 +10,7 @@ namespace TPDT.LogicGraph.SharpDXGame
     {
         public Screen (Game2DBase game):base(game)
         {
-
+            this.Screen = this;
         }
     }
 }

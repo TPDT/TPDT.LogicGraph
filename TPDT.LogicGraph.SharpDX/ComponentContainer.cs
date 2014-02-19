@@ -51,5 +51,12 @@ namespace TPDT.LogicGraph.SharpDXGame
             }
             base.Update(gameTime);
         }
+
+        public void AddComponent(GameComponent component)
+        {
+            this.Components.Add(component);
+            if (component is DrawableGameComponent)
+                this.DrawableComponents.Add(component as DrawableGameComponent);
+        }
     }
 }

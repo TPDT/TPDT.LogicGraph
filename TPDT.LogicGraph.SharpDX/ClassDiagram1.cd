@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TPDT.LogicGraph.SharpDXGame.ComponentContainer" Collapsed="true">
+    <Position X="2.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAA4AAAAAAAAAAAAAAAAABAAAAAAAAAAQ=</HashCode>
+      <FileName>ComponentContainer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TPDT.LogicGraph.SharpDXGame.DrawableGameComponent" Collapsed="true">
+    <Position X="3.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAADAAAwAAAAAgAAAAAAAAAAAoAAAAAAAAAAQ=</HashCode>
+      <FileName>DrawableComponent.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TPDT.LogicGraph.SharpDXGame.Game2DBase" Collapsed="true">
+    <Position X="7.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAQAAAAAhAAAAIAAAAAAEAACAAAAAAAA=</HashCode>
+      <FileName>Game2DBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TPDT.LogicGraph.SharpDXGame.GameBase" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAQANgAAAqEFg4AAAAkBAAAIQAgAAgAAIFFCgCEABAY=</HashCode>
+      <FileName>GameApp.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TPDT.LogicGraph.SharpDXGame.GameComponent" Collapsed="true">
+    <Position X="3.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AwQAAAAAACAAAYAABACAAAAACAgBAAAAAAAIAQACAAA=</HashCode>
+      <FileName>GameComponent.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TPDT.LogicGraph.SharpDXGame.OrderedCollection&lt;T&gt;" Collapsed="true">
+    <Position X="3.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACgAAAAAAAAAAAAAAAAAAAAAoAAAAAAAAQA=</HashCode>
+      <FileName>GameComponentCollection.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TPDT.LogicGraph.SharpDXGame.GameComponentCollection" Collapsed="true">
+    <Position X="4.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameComponentCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TPDT.LogicGraph.SharpDXGame.DrawableComponentCollection" Collapsed="true">
+    <Position X="2.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameComponentCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TPDT.LogicGraph.SharpDXGame.GameConfiguration" Collapsed="true">
+    <Position X="10" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAABAAAAEAAAAAAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TPDT.LogicGraph.SharpDXGame.GameScreen" Collapsed="true">
+    <Position X="11.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Screen\GameScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TPDT.LogicGraph.SharpDXGame.GameTime" Collapsed="true">
+    <Position X="10" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAAAAAAAAACABAAAIQAAAAAAAAA=</HashCode>
+      <FileName>GameTime.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TPDT.LogicGraph.SharpDXGame.MainGame" Collapsed="true">
+    <Position X="7.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAFAAAAABAgwAAAAgAAAAAgAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>MainGame.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TPDT.LogicGraph.SharpDXGame.Program" Collapsed="true">
+    <Position X="11.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TPDT.LogicGraph.SharpDXGame.ScreenManager" Collapsed="true">
+    <Position X="4.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAgAAAAAAAAAAAAAAACAAAAAAAAEAAAA=</HashCode>
+      <FileName>ScreenManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="TPDT.LogicGraph.SharpDXGame.IDrawable" Collapsed="true">
+    <Position X="10" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAoAAAAAAAAAAA=</HashCode>
+      <FileName>DrawableComponent.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TPDT.LogicGraph.SharpDXGame.IGameComponent" Collapsed="true">
+    <Position X="11.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameComponent.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TPDT.LogicGraph.SharpDXGame.IUpdateable" Collapsed="true">
+    <Position X="10" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQQAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAIAQAAAAA=</HashCode>
+      <FileName>GameComponent.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>

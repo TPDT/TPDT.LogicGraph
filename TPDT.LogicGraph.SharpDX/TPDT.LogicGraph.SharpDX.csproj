@@ -71,7 +71,7 @@
     <Compile Include="GameConfiguration.cs" />
     <Compile Include="GameTime.cs" />
     <Compile Include="Game2DBase.cs" />
-    <Compile Include="GameScreen.cs" />
+    <Compile Include="Screen\GameScreen.cs" />
     <Compile Include="MainGame.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -87,6 +87,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="Content\wryh">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
