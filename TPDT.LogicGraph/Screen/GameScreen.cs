@@ -19,6 +19,8 @@ namespace TPDT.LogicGraph
         private Map map;
         private int mode;
         private NodeBase selectNode;
+        private Texture2D line;
+        private RoadDisplayMode roadmode = RoadDisplayMode.Direct;
         public GameScreen(LogicGraph game)
             : base(game)
         {
@@ -82,7 +84,8 @@ namespace TPDT.LogicGraph
                 {
                     if (selectNode != ((Node)sender).NodeData && flag)
                     {
-                         rode = RoadBase.CreateRode(0, selectNode, node.NodeData);
+                        rode = RoadBase.CreateRode(0, selectNode, node.NodeData);
+                        rode.RoadDisplayMode = roadmode;
                         map.Roads.Add(rode);
                         var rodecomp = new Road(Game, rode);
                         this.Components.Add(rodecomp);
@@ -148,7 +151,14 @@ namespace TPDT.LogicGraph
             if (mode==1)
                 Game.SpriteBatch.DrawString(Game.BasicFont, "addnode", Vector2.UnitY * 25, Color.White);
             if (mode==2)
-                Game.SpriteBatch.DrawString(Game.BasicFont, "addroad", Vector2.UnitY * 25, Color.White);
+            {
+                if (selectNode != null)
+                {
+                    Vector2 p = new Vector2(selectNode.Position.Item1, selectNode.Position.Item2);
+                    Road.DrawLine(p, Game.MouseHelper.Position, line, Game, Color.Green, roadmode);
+                }
+                Game.SpriteBatch.DrawString(Game.BasicFont, roadmode.ToString(), Vector2.UnitY * 25, Color.White);
+            }
             if (selectNode != null)
                 Game.SpriteBatch.DrawString(Game.BasicFont, selectNode.Id.ToString(), Vector2.UnitY * 50, Color.White);
             base.Draw(gameTime);
@@ -159,10 +169,15 @@ namespace TPDT.LogicGraph
             btnroad.HoverBackground = Content.Load<Texture2D>("Button110_Hover.png");
             btnrenode.HoverBackground = Content.Load<Texture2D>("Button150_Hover.png");
             btnrerode.HoverBackground = Content.Load<Texture2D>("Button150_Hover.png");
+            line = Content.Load<Texture2D>("Line.png");
             base.LoadContent();
         }
         public override void Update(GameTime gameTime)
         {
+            if (mode == 2)
+            {
+                roadmode = (RoadDisplayMode)Math.Abs(Game.MouseHelper.CurrentState.WheelDelta / 100 % 5);
+            }
             base.Update(gameTime);
         }
     }
