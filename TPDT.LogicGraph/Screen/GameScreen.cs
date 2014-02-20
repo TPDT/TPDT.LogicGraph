@@ -31,11 +31,17 @@ namespace TPDT.LogicGraph
             btnrerode = new Button(game, "Button150.png", "Remove Road", new Vector2(370, 0), new Size2(150, 30), null, Color.White);
             btnnode.Click += btnnode_Click;
             btnroad.Click += btnroad_Click;
+            btnrenode.Click += btnrenode_Click;
             btnrerode.Click += btnrerode_Click;
 
             this.OnButtonUp += GameScreen_OnButtonUp;
 
             map = new Map();
+        }
+
+        void btnrenode_Click(object sender, EventArgs e)
+        {
+            mode = 4;
         }
 
         void btnrerode_Click(object sender, EventArgs e)
@@ -59,15 +65,34 @@ namespace TPDT.LogicGraph
 
         void comp_OnButtonUp(object sender, EventArgs e)
         {
-            //如果目前没有选择任何节点则选中此节点
-            if (selectNode == null)
+            Node node = ((Node)sender);
+            if (mode == 4)
             {
-                selectNode = ((Node)sender).NodeData;
+                map.Nodes.Remove(node.NodeData);
+                this.Components.Remove(node);
+                int length = this.Components.Count;
+                for (int i = 0; i < length; i++)
+                {
+                    if(Components[i] is Road)
+                    {
+                        var r = Components[i] as Road;
+                        if (r.RodeData.Node1 == null || r.RodeData.Node2 == null)
+                        {
+                            Components.Remove(r);
+                            i--;
+                            length--;
+                        }
+                    }
+                }
+            }
+            //如果目前没有选择任何节点则选中此节点
+            else if (selectNode == null)
+            {
+                selectNode = node.NodeData;
             }
             else
             {
                 //否则先寻找两节点之间是否有路
-                Node node = ((Node)sender);
                 bool flag = true;
                 RoadBase rode = null;
                 foreach(var r in selectNode.Roads)
