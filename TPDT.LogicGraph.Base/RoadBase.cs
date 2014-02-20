@@ -14,14 +14,49 @@ namespace TPDT.LogicGraph.Base
 	/// <summary>
 	/// Description of RoadBase.
 	/// </summary>
-	public abstract class RoadBase
-	{		
-		public int Id{get;private set;}
-		public static string Name{get;private set;}
-		public static string Description{get;private set;}
-		public NodeBase Node1{get;private set;}
-		public NodeBase Node2{get;private set;}
+    public abstract class RoadBase : GameEntity
+    {
+        private static int index = 0;
+        public new static string Name { get; protected set; }
+        public new static string Description { get; protected set; }
+        public NodeBase Node1 { get; protected set; }
+        public NodeBase Node2 { get; protected set; }
 		
 		public abstract bool IsMoveable(ArmyBase army);
-	}
+        public RoadBase(int id, NodeBase node1, NodeBase node2)
+        {
+            Node1 = node1;
+            node1.Roads.Add(this);
+            Node2 = node2;
+            node2.Roads.Add(this);
+            this.Id = id;
+        }
+
+        public static RoadBase CreateRode(int typeId,NodeBase node1,NodeBase node2)
+        {
+            RoadBase road;
+
+            road = ResourceManager.CurrentResouceManager.LoadedRoads[
+                ResourceManager.CurrentResouceManager.RoadDefinitions[typeId]].InvokeMember(
+                null,
+                System.Reflection.BindingFlags.CreateInstance,
+                null,
+                null,
+                new object[] { index++, node1, node2 }
+                ) as RoadBase;
+
+            return road;
+        }
+
+        public override void Dispose()
+        {
+            if (Node1 != null)
+                Node1.Roads.Remove(this);
+            if (Node2 != null)
+                Node2.Roads.Remove(this);
+            Node1 = null;
+            Node2 = null;
+            GC.SuppressFinalize(this);
+        }
+    }
 }

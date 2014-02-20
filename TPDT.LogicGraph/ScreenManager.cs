@@ -18,7 +18,7 @@ namespace TPDT.LogicGraph
             ((IContentable)CurrentScreen).LoadContent();
         }
 
-        public ScreenManager(Game game)
+        public ScreenManager(LogicGraph game)
             : base(game)
         {
         }

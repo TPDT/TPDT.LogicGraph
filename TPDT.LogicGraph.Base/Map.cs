@@ -20,12 +20,16 @@ namespace TPDT.LogicGraph.Base
 	{
 		public int Id{get;private set;}
 		public string Name{get;private set;}
-		public NodeBase[] Nodes{get;private set;}
+		public List<NodeBase> Nodes{get;private set;}
 		public string Author{get;private set;}
 		public string Description{get;private set;}
+
+        public List<RoadBase> Roads { get; private set; }
 		
 		public Map()
 		{
+            Nodes = new List<NodeBase>();
+            Roads = new List<RoadBase>();
 		}
 		public void Save(string path)
 		{

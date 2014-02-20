@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace TPDT.LogicGraph
 {
-    class ComponentContainer : DrawableGameComponent
+    public class ComponentContainer : DrawableGameComponent
     {
         private readonly List<IDrawable> currentlyDrawingGameSystems;
         private readonly List<IUpdateable> currentlyUpdatingGameSystems;
@@ -21,8 +21,8 @@ namespace TPDT.LogicGraph
         
         private bool contentLoaded = false;
 
-        public ObservableCollection<GameComponent> Components;
-        public ComponentContainer(Game game)
+        public ObservableCollection<GameComponent> Components { get; set; }
+        public ComponentContainer(LogicGraph game)
             : base(game)
         {
             drawableGameSystems = new List<IDrawable>();

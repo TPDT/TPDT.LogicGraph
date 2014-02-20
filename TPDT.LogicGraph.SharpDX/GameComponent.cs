@@ -43,6 +43,12 @@ namespace TPDT.LogicGraph.SharpDXGame
             }
         }
 
+        public Screen Screen
+        {
+            get;
+            protected set;
+        }
+
         public event EventHandler<EventArgs> Disposed;
         public event EventHandler<EventArgs> EnabledChanged;
         public event EventHandler<EventArgs> UpdateOrderChanged;

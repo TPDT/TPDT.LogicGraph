@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 2013 for Windows Desktop
+# Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TPDT.LogicGraph.SharpDX", "TPDT.LogicGraph.SharpDX\TPDT.LogicGraph.SharpDX.csproj", "{FB84A583-12BA-49C6-870F-FA409A235603}"
@@ -10,8 +10,15 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TPDT.LogicGraph.Default", "TPDT.LogicGraph.Default\TPDT.LogicGraph.Default.csproj", "{94F2839D-BFB4-40CC-82FB-B689F57747C8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TPDT.LogicGraph", "TPDT.LogicGraph\TPDT.LogicGraph.csproj", "{228A0533-D867-489E-BEBF-A5AB705D692C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{94F2839D-BFB4-40CC-82FB-B689F57747C8} = {94F2839D-BFB4-40CC-82FB-B689F57747C8}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TPDT.FontSolver", "TPDT.FontSolver\TPDT.FontSolver.csproj", "{51B51551-DDFF-4651-A4EB-30FD3DB08C96}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TPDT.LogicGraph.MonoGame", "TPDT.LogicGraph.MonoGame\TPDT.LogicGraph.MonoGame.csproj", "{A0539D59-3D77-4BBD-B3EF-DFCE5F3DDD93}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TPDT.LogicGraph.DataGenerater", "TPDT.LogicGraph.DataGenerater\TPDT.LogicGraph.DataGenerater.csproj", "{72A03071-7694-4CE6-BFAC-C0D327F666EB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,6 +80,26 @@ Global
 		{51B51551-DDFF-4651-A4EB-30FD3DB08C96}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{51B51551-DDFF-4651-A4EB-30FD3DB08C96}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{51B51551-DDFF-4651-A4EB-30FD3DB08C96}.Release|x86.ActiveCfg = Release|Any CPU
+		{A0539D59-3D77-4BBD-B3EF-DFCE5F3DDD93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0539D59-3D77-4BBD-B3EF-DFCE5F3DDD93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0539D59-3D77-4BBD-B3EF-DFCE5F3DDD93}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{A0539D59-3D77-4BBD-B3EF-DFCE5F3DDD93}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{A0539D59-3D77-4BBD-B3EF-DFCE5F3DDD93}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A0539D59-3D77-4BBD-B3EF-DFCE5F3DDD93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0539D59-3D77-4BBD-B3EF-DFCE5F3DDD93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0539D59-3D77-4BBD-B3EF-DFCE5F3DDD93}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{A0539D59-3D77-4BBD-B3EF-DFCE5F3DDD93}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{A0539D59-3D77-4BBD-B3EF-DFCE5F3DDD93}.Release|x86.ActiveCfg = Release|Any CPU
+		{72A03071-7694-4CE6-BFAC-C0D327F666EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72A03071-7694-4CE6-BFAC-C0D327F666EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72A03071-7694-4CE6-BFAC-C0D327F666EB}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{72A03071-7694-4CE6-BFAC-C0D327F666EB}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{72A03071-7694-4CE6-BFAC-C0D327F666EB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{72A03071-7694-4CE6-BFAC-C0D327F666EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72A03071-7694-4CE6-BFAC-C0D327F666EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72A03071-7694-4CE6-BFAC-C0D327F666EB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{72A03071-7694-4CE6-BFAC-C0D327F666EB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{72A03071-7694-4CE6-BFAC-C0D327F666EB}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

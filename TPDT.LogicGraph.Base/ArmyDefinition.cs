@@ -14,7 +14,6 @@ namespace TPDT.LogicGraph.Base
         public int DefaultMove { get;  set; }
         public NodeDefinition[] DefaultAttackableNodes { get;  set; }
         public NodeDefinition[] DefaultMoveableNodes { get;  set; }
-        public string DefaultDescription { get;  set; }
 
         public ArmyDefinition()
         {
@@ -53,12 +52,12 @@ namespace TPDT.LogicGraph.Base
             ad.DefaultAttackableNodes = new NodeDefinition[reader.ReadInt32()];
             for (int i = 0; i < ad.DefaultAttackableNodes.Length; i++)
             {
-                ad.DefaultAttackableNodes[i] = ResouceManager.CurrentResouceManager.NodeDefinitions[reader.ReadInt32()];
+                ad.DefaultAttackableNodes[i] = ResourceManager.CurrentResouceManager.NodeDefinitions[reader.ReadInt32()];
             }
             ad.DefaultMoveableNodes = new NodeDefinition[reader.ReadInt32()];
             for (int i = 0; i < ad.DefaultMoveableNodes.Length; i++)
             {
-                ad.DefaultMoveableNodes[i] = ResouceManager.CurrentResouceManager.NodeDefinitions[reader.ReadInt32()];
+                ad.DefaultMoveableNodes[i] = ResourceManager.CurrentResouceManager.NodeDefinitions[reader.ReadInt32()];
             }
 
             return ad;

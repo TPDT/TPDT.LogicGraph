@@ -15,7 +15,7 @@ namespace TPDT.LogicGraph
         private readonly DisposeCollector contentCollector = new DisposeCollector();
         private readonly IServiceRegistry registry;
         private bool enabled;
-        private Game game;
+        private LogicGraph game;
         private int updateOrder;
         private IContentManager contentManager;
 
@@ -34,7 +34,7 @@ namespace TPDT.LogicGraph
         /// Initializes a new instance of the <see cref="GameSystem" /> class.
         /// </summary>
         /// <param name="game">The game.</param>
-        public GameComponent(Game game)
+        public GameComponent(LogicGraph game)
         {
             if (game == null) throw new ArgumentNullException("game");
             this.game = game;
@@ -42,11 +42,13 @@ namespace TPDT.LogicGraph
             this.Enabled = true;
         }
 
+        public Screen Screen { get; set; }
+
         /// <summary>
         /// Gets the <see cref="Game"/> associated with this <see cref="GameSystem"/>. This value can be null in a mock environment.
         /// </summary>
         /// <value>The game.</value>
-        public Game Game
+        public LogicGraph Game
         {
             get { return game; }
         }

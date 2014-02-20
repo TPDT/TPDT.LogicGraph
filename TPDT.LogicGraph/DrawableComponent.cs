@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 
 namespace TPDT.LogicGraph
 {
-    public class DrawableGameComponent : GameComponent, IDrawable
+    public abstract class DrawableGameComponent : GameComponent, IDrawable
     {
         private IGraphicsDeviceService graphicsDeviceService;
         private bool visible;
         private int drawOrder;
-        public DrawableGameComponent(Game game)
+        public DrawableGameComponent(LogicGraph game)
             : base(game)
         {
         }

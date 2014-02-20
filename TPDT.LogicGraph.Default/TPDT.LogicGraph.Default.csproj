@@ -39,9 +39,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Nodes\DefaultNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Armys\Soilder.cs" />
+    <Compile Include="Cards\Spirit.cs" />
+    <Compile Include="Rode\TwoWayRoad.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TPDT.LogicGraph.Base\TPDT.LogicGraph.Base.csproj">
+      <Project>{f7c89243-d44c-458c-add2-b7006f96796f}</Project>
+      <Name>TPDT.LogicGraph.Base</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
