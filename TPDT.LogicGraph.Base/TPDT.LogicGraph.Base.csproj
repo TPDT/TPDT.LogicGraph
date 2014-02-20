@@ -51,15 +51,22 @@
     <Compile Include="CardDefinition.cs" />
     <Compile Include="DataDefinion.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="GameEntity.cs" />
     <Compile Include="Global.cs" />
+    <Compile Include="IRound.cs" />
+    <Compile Include="ISelectable.cs" />
     <Compile Include="LocalPlayer.cs" />
     <Compile Include="NodeBase.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="NodeDefinition.cs" />
     <Compile Include="PlayerBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ResouceManager.cs" />
+    <Compile Include="ResourceManager.cs" />
     <Compile Include="RoadBase.cs" />
+    <Compile Include="RoadDisplayMode.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

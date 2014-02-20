@@ -10,19 +10,20 @@ using System.Threading.Tasks;
 
 namespace TPDT.LogicGraph
 {
-    public class DrawableGameComponent : GameComponent, IDrawable
+    public abstract class DrawableGameComponent : GameComponent, IDrawable
     {
         private IGraphicsDeviceService graphicsDeviceService;
         private bool visible;
         private int drawOrder;
-        public DrawableGameComponent(Game game)
+        public DrawableGameComponent(LogicGraph game)
             : base(game)
         {
         }
         public override void Initialize()
         {
             // Gets the graphics device service
-            graphicsDeviceService = (IGraphicsDeviceService)base.Services.GetService(typeof(IGraphicsDeviceService)); 
+            graphicsDeviceService = (IGraphicsDeviceService)base.Services.GetService(typeof(IGraphicsDeviceService));
+            this.Visible = true;
             base.Initialize();
         }
         /// <summary>

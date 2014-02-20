@@ -15,9 +15,10 @@ namespace TPDT.LogicGraph
         {
             CurrentScreen = screen;
             CurrentScreen.Initialize();
+            ((IContentable)CurrentScreen).LoadContent();
         }
 
-        public ScreenManager(Game game)
+        public ScreenManager(LogicGraph game)
             : base(game)
         {
         }

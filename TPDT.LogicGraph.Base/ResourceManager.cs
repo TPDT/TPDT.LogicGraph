@@ -8,38 +8,41 @@ using TPDT.LogicGraph.Army;
 
 namespace TPDT.LogicGraph.Base
 {
-    public class ResouceManager
+    public class ResourceManager
     {
-        public Assembly[] LoadedAssemblys { get; protected set; }
+        public List<Assembly> LoadedAssemblys { get; protected set; }
         public Dictionary<int, ArmyDefinition> ArmyDefinitions {  get; protected set; }
         public Dictionary<int, CardDefinition> CardDefinitions { get; protected set; }
         public Dictionary<int, NodeDefinition> NodeDefinitions { get; protected set; }
+        public Dictionary<int, string> RoadDefinitions { get; protected set; }
         public Dictionary<string, Type> LoadedArmys { get; protected set; }
         public Dictionary<string, Type> LoadedCards { get; protected set; }
         public Dictionary<string, Type> LoadedNodes { get; protected set; }
-        public Dictionary<string, Type> LoadedRodes { get; protected set; }
+        public Dictionary<string, Type> LoadedRoads { get; protected set; }
 
         public static Game CurrentGame {  get; protected set; }
-        public static ResouceManager CurrentResouceManager {  get; protected set; }
+        public static ResourceManager CurrentResouceManager {  get; protected set; }
 
-        public ResouceManager()
+        public ResourceManager()
         {
             ArmyDefinitions = new Dictionary<int, ArmyDefinition>();
             CardDefinitions = new Dictionary<int, CardDefinition>();
             NodeDefinitions = new Dictionary<int, NodeDefinition>();
+            RoadDefinitions = new Dictionary<int, string>();
             LoadedArmys = new Dictionary<string, Type>();
             LoadedCards = new Dictionary<string, Type>();
             LoadedNodes = new Dictionary<string, Type>();
-            LoadedRodes = new Dictionary<string, Type>();
+            LoadedRoads = new Dictionary<string, Type>();
+            LoadedAssemblys = new List<Assembly>();
+            ResourceManager.CurrentResouceManager = this;
         }
-
 
         public void Save(string path)
         {
             using (BinaryWriter writer = new BinaryWriter(new FileStream(path, FileMode.Create)))
             {
                 writer.Write((byte)0);
-                writer.Write(LoadedAssemblys.Length );
+                writer.Write(LoadedAssemblys.Count );
                 foreach (var ass in LoadedAssemblys)
                 {
                     writer.Write(Path.GetFileName( ass.Location));
@@ -65,6 +68,14 @@ namespace TPDT.LogicGraph.Base
                 {
                     nd.Value.Save(writer);
                 }
+
+                writer.Write((byte)4);
+                writer.Write(RoadDefinitions.Count);
+                foreach (var nd in RoadDefinitions)
+                {
+                    writer.Write(nd.Key);
+                    writer.Write(nd.Value);
+                }
             }
         }
 
@@ -75,11 +86,10 @@ namespace TPDT.LogicGraph.Base
                 if (reader.Read() == 0)
                 {
                     int count = reader.ReadInt32();
-                    LoadedAssemblys = new Assembly[count];
                     for (int i = 0; i < count; i++)
                     {
                         Assembly ass = Assembly.LoadFrom(reader.ReadString());
-                        LoadedAssemblys[i] = ass;
+                        LoadedAssemblys.Add(ass);
                         foreach (var t in ass.GetTypes())
                         {
                             if (t.IsSubclassOf(typeof(ArmyBase)))
@@ -96,7 +106,7 @@ namespace TPDT.LogicGraph.Base
                             }
                             else if (t.IsSubclassOf(typeof(RoadBase)))
                             {
-                                LoadedRodes.Add(t.FullName, t);
+                                LoadedRoads.Add(t.FullName, t);
                             }
                         }
                     }
@@ -134,6 +144,17 @@ namespace TPDT.LogicGraph.Base
                     {
                         NodeDefinition nd = NodeDefinition.Load(reader);
                         NodeDefinitions[nd.Id] = nd;
+                    }
+                }
+                else
+                    throw new Exception("no NodeDefinitions");
+
+                if (reader.Read() == 4)
+                {
+                    int count = reader.ReadInt32();
+                    for (int i = 0; i < count; i++)
+                    {
+                        RoadDefinitions[reader.ReadInt32()] = reader.ReadString();
                     }
                 }
                 else
