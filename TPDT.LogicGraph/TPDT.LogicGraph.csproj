@@ -82,7 +82,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Class1.cpp" />
     <Compile Include="ComponentContainer.cs" />
     <Compile Include="DrawableComponent.cs" />
     <Compile Include="GameComponent.cs" />

@@ -60,7 +60,12 @@ namespace TPDT.LogicGraph.Base
 
         public override void Dispose()
         {
-            throw new NotImplementedException();
+            int len = Roads.Count;
+            for (int i = 0; i < len; i++)
+            {
+                Roads[0].Dispose();
+            }
+            GC.SuppressFinalize(this);
         }
     }
 }

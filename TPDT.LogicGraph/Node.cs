@@ -40,6 +40,8 @@ namespace TPDT.LogicGraph
 
         protected override void UnloadContent()
         {
+            NodeData.Dispose();
+            NodeData = null;
             base.UnloadContent();
         }
 
