@@ -86,6 +86,7 @@
     <Compile Include="ComponentContainer.cs" />
     <Compile Include="DrawableComponent.cs" />
     <Compile Include="GameComponent.cs" />
+    <Compile Include="IColor.cs" />
     <Compile Include="IPosition.cs" />
     <Compile Include="LogicGraph.cs" />
     <Compile Include="MouseHelper.cs" />
